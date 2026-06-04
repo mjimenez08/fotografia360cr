@@ -18,21 +18,37 @@ const SERVICE_OPTIONS = [
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", service: "", message: "" });
-  const [sending, setSending] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSending(true);
-    setTimeout(() => {
-      setSending(false);
-      // TODO: conectar con EmailJS, Resend o Formspree
-      alert(`¡Gracias, ${form.name}! Recibimos tu mensaje y te contactaremos pronto a ${form.email}.`);
-      setForm({ name: "", email: "", service: "", message: "" });
-    }, 800);
+    setStatus("sending");
+
+    try {
+      const res = await fetch("https://formspree.io/f/xjgdkrpp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          service: form.service,
+          message: form.message,
+        }),
+      });
+
+      if (res.ok) {
+        setStatus("success");
+        setForm({ name: "", email: "", service: "", message: "" });
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   };
 
   const inputStyle = {
@@ -101,11 +117,17 @@ export default function Contact() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs tracking-wider uppercase" style={{ color: "var(--stone)" }}>Nombre *</label>
-                <input type="text" name="name" required value={form.name} onChange={handleChange} placeholder="Tu nombre" style={inputStyle} />
+                <input
+                  type="text" name="name" required value={form.name}
+                  onChange={handleChange} placeholder="Tu nombre" style={inputStyle}
+                />
               </div>
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs tracking-wider uppercase" style={{ color: "var(--stone)" }}>Correo *</label>
-                <input type="email" name="email" required value={form.email} onChange={handleChange} placeholder="tu@correo.com" style={inputStyle} />
+                <input
+                  type="email" name="email" required value={form.email}
+                  onChange={handleChange} placeholder="tu@correo.com" style={inputStyle}
+                />
               </div>
             </div>
 
@@ -128,13 +150,26 @@ export default function Contact() {
               />
             </div>
 
+            {/* Botón y mensajes de estado */}
             <button
-              type="submit" disabled={sending}
+              type="submit"
+              disabled={status === "sending" || status === "success"}
               className="inline-flex items-center justify-center gap-3 px-8 py-4 font-medium tracking-wider uppercase text-sm transition-all duration-300 hover:scale-105 disabled:opacity-60 disabled:cursor-not-allowed rounded-sm"
               style={{ background: "var(--gold)", color: "var(--ink)" }}
             >
-              {sending ? "Enviando…" : "Enviar solicitud →"}
+              {status === "sending" ? "Enviando…" : status === "success" ? "¡Mensaje enviado! ✓" : "Enviar solicitud →"}
             </button>
+
+            {status === "success" && (
+              <p className="text-sm text-center font-light" style={{ color: "var(--gold-lt)" }}>
+                Gracias, nos pondremos en contacto contigo pronto.
+              </p>
+            )}
+            {status === "error" && (
+              <p className="text-sm text-center font-light" style={{ color: "#e57373" }}>
+                Hubo un error al enviar. Por favor escríbenos directo por WhatsApp.
+              </p>
+            )}
           </form>
 
           {/* ── Información de contacto ── */}

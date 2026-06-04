@@ -27,7 +27,7 @@ export interface Service {
   gradientClass: string;
   description: string;
   features: string[];
-  benefits: { icon: string; text: string }[];
+  benefits: string[];
   waKey: string;
   packages?: ServicePackage[];
 }
@@ -63,10 +63,10 @@ export const SERVICES: Service[] = [
       "Soporte para propiedades residenciales y comerciales",
     ],
     benefits: [
-      { icon: "🏠", text: "Mayor alcance en portales como OLX y Encuentra24" },
-      { icon: "⏱️", text: "Reduce visitas innecesarias y acelera la toma de decisión" },
-      { icon: "📈", text: "Propiedades con tour virtual reciben hasta 3× más consultas" },
-      { icon: "🌐", text: "Comparte en redes sociales y WhatsApp con un clic" },
+      "Mayor alcance en portales como OLX y Encuentra24",
+      "Reduce visitas innecesarias y acelera la toma de decisión",
+      "Propiedades con tour virtual reciben hasta 3× más consultas",
+      "Comparte en redes sociales y WhatsApp con un clic",
     ],
     waKey: "svc1",
   },
@@ -88,10 +88,10 @@ export const SERVICES: Service[] = [
       "Sesión en horario conveniente para tu negocio",
     ],
     benefits: [
-      { icon: "📍", text: "Destaca en búsquedas de Google Maps" },
-      { icon: "🛍️", text: "Genera confianza antes de la primera visita" },
-      { icon: "📊", text: "Aumenta el tiempo de permanencia en tu perfil digital" },
-      { icon: "🤳", text: "Contenido reutilizable para redes sociales" },
+      "Destaca en búsquedas de Google Maps",
+      "Genera confianza antes de la primera visita",
+      "Aumenta el tiempo de permanencia en tu perfil digital",
+      "Contenido reutilizable para redes sociales",
     ],
     waKey: "svc2",
   },
@@ -113,10 +113,10 @@ export const SERVICES: Service[] = [
       "Panel de estadísticas de visitas",
     ],
     benefits: [
-      { icon: "🎯", text: "Experiencia inmersiva que diferencia tu marca" },
-      { icon: "📋", text: "Planos interactivos para orientar al visitante" },
-      { icon: "📲", text: "Funciona en VR, móvil y escritorio" },
-      { icon: "📉", text: "Reduce costos de visitas presenciales" },
+      "Experiencia inmersiva que diferencia tu marca",
+      "Planos interactivos para orientar al visitante",
+      "Funciona en VR, móvil y escritorio",
+      "Reduce costos de visitas presenciales",
     ],
     waKey: "svc3",
   },
@@ -130,7 +130,7 @@ export const SERVICES: Service[] = [
     description:
       "Videos 360° grabados desde un punto fijo que permiten al espectador explorar el entorno completo. Perfectos para YouTube, Facebook y campañas de redes sociales.",
     features: [
-      "Grabación en 5.7K ultra HD",
+      "Grabación en ultra HD",
       "Edición y color grading profesional",
       "Exportación en formato equirectangular",
       "Optimizado para YouTube 360° y Facebook",
@@ -138,10 +138,10 @@ export const SERVICES: Service[] = [
       "Música o narración opcional",
     ],
     benefits: [
-      { icon: "🎬", text: "Contenido diferenciador en redes sociales" },
-      { icon: "👁️", text: "Hasta 4× más visualizaciones que video convencional" },
-      { icon: "🔁", text: "Reutilizable en múltiples campañas digitales" },
-      { icon: "🏆", text: "Posiciona tu marca como innovadora y moderna" },
+      "Contenido diferenciador en redes sociales",
+      "Hasta 4× más visualizaciones que video convencional",
+      "Reutilizable en múltiples campañas digitales",
+      "Posiciona tu marca como innovadora y moderna",
     ],
     waKey: "svc4",
   },
@@ -157,16 +157,16 @@ export const SERVICES: Service[] = [
     features: [
       "Grabación en movimiento con estabilización",
       "Opciones: walkthrough, drone, vehículo",
-      "Resolución 5.7K con estabilización de imagen",
+      "Resolución ultra HD con estabilización de imagen",
       "Edición narrativa profesional",
       "Transiciones y efectos visuales premium",
       "Entrega en múltiples formatos",
     ],
     benefits: [
-      { icon: "✈️", text: "Ideal para turismo, hospitality y bienes raíces de lujo" },
-      { icon: "🎢", text: "Experiencia inmersiva que genera emoción y deseo" },
-      { icon: "📡", text: "Compatible con plataformas VR y gafas de realidad virtual" },
-      { icon: "🌍", text: "Alcanza audiencias globales con contenido de alto impacto" },
+      "Ideal para turismo, hospitality y bienes raíces de lujo",
+      "Experiencia inmersiva que genera emoción y deseo",
+      "Compatible con plataformas VR y gafas de realidad virtual",
+      "Alcanza audiencias globales con contenido de alto impacto",
     ],
     waKey: "svc5",
   },
@@ -188,10 +188,10 @@ export const SERVICES: Service[] = [
       "Ingeniería certificada e inscrita al CFIA",
     ],
     benefits: [
-      { icon: "🏗️", text: "Supervisa tu obra sin desplazarte" },
-      { icon: "📑", text: "Respaldo legal y técnico en cada visita" },
-      { icon: "🔍", text: "Detecta discrepancias con planos a tiempo" },
-      { icon: "💼", text: "Informes profesionales para inversionistas y bancos" },
+      "Supervisa tu obra sin desplazarte",
+      "Respaldo legal y técnico en cada visita",
+      "Detecta discrepancias con planos a tiempo",
+      "Informes profesionales para inversionistas y bancos",
     ],
     waKey: "svc6",
     packages: [
@@ -245,27 +245,4 @@ export const INDUSTRIES = [
   { num: "06", label: "Salud & Bienestar" },
   { num: "07", label: "Educación" },
   { num: "08", label: "Construcción" },
-];
-
-export const DIFFERENTIATORS = [
-  {
-    icon: "⚡",
-    title: "Entrega en 3–5 días hábiles",
-    body: "Desde la sesión hasta el enlace listo para compartir. Sin demoras, con calidad garantizada.",
-  },
-  {
-    icon: "📷",
-    title: "Tecnología de punta",
-    body: "Cámara Insta360 X4 con resolución 5.7K. Los mejores equipos del mercado para resultados excepcionales.",
-  },
-  {
-    icon: "🏛️",
-    title: "Ingeniería certificada CFIA",
-    body: "Para inspecciones de obra, contamos con ingenieros inscritos al Colegio Federado de Ingenieros y Arquitectos.",
-  },
-  {
-    icon: "🤝",
-    title: "Soporte post-entrega",
-    body: "Acompañamos tu proyecto después de la entrega. Ajustes, actualizaciones y consultas sin costo adicional.",
-  },
 ];

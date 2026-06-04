@@ -12,7 +12,7 @@ const DIFFERENTIATORS = [
   {
     Icon: IconCamera,
     title: "Tecnología de punta",
-    body: "Cámara Insta360 X4 con resolución 5.7K. Los mejores equipos del mercado para resultados excepcionales.",
+    body: "Los mejores equipos del mercado para resultados excepcionales en cada proyecto.",
   },
   {
     Icon: IconBuilding,

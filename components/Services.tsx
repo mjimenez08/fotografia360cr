@@ -2,6 +2,15 @@
 
 import { useState } from "react";
 import { SERVICES, WA_MESSAGES, waLink } from "@/lib/constants";
+import { IconWhatsApp, IconCheck } from "@/components/Icons";
+
+function IconBenefit() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width="16" height="16">
+      <path d="M5 12h14M12 5l7 7-7 7" />
+    </svg>
+  );
+}
 
 export default function Services() {
   const [open, setOpen] = useState<string | null>(null);
@@ -14,10 +23,7 @@ export default function Services() {
         {/* Header */}
         <div className="max-w-xl mb-16">
           <span className="gold-line" />
-          <p
-            className="text-xs font-medium tracking-[0.25em] uppercase mb-3"
-            style={{ color: "var(--gold)" }}
-          >
+          <p className="text-xs font-medium tracking-[0.25em] uppercase mb-3" style={{ color: "var(--gold)" }}>
             Lo que hacemos
           </p>
           <h2
@@ -25,9 +31,7 @@ export default function Services() {
             style={{ fontSize: "clamp(2rem, 4vw, 3rem)", color: "var(--cream)" }}
           >
             Nuestros{" "}
-            <em className="font-semibold" style={{ color: "var(--gold-lt)" }}>
-              servicios
-            </em>
+            <em className="font-semibold" style={{ color: "var(--gold-lt)" }}>servicios</em>
           </h2>
         </div>
 
@@ -47,14 +51,9 @@ export default function Services() {
                   onClick={() => toggle(svc.id)}
                   aria-expanded={isOpen}
                 >
-                  {/* Background gradient */}
-                  <div
-                    className={`svc-header-bg absolute inset-0 bg-gradient-to-r ${svc.gradientClass}`}
-                  />
-                  {/* Content */}
+                  <div className={`svc-header-bg absolute inset-0 bg-gradient-to-r ${svc.gradientClass}`} />
                   <div className="relative z-10 px-8 py-6 flex items-center justify-between gap-4">
                     <div className="flex items-start gap-6">
-                      {/* Number */}
                       <span
                         className="font-cormorant font-bold text-4xl leading-none shrink-0 hidden sm:block"
                         style={{ color: "rgba(168,137,90,0.45)" }}
@@ -62,7 +61,6 @@ export default function Services() {
                         {svc.num}
                       </span>
                       <div>
-                        {/* Tag */}
                         <span
                           className="inline-block text-xs font-medium tracking-widest uppercase px-2.5 py-0.5 rounded-full mb-2"
                           style={{
@@ -84,8 +82,6 @@ export default function Services() {
                         </p>
                       </div>
                     </div>
-
-                    {/* Plus icon */}
                     <span
                       className="shrink-0 text-2xl transition-transform duration-300 font-thin"
                       style={{
@@ -111,12 +107,10 @@ export default function Services() {
                           <ul className="space-y-2">
                             {svc.features.map((f, i) => (
                               <li key={i} className="flex items-start gap-3">
-                                <span style={{ color: "var(--gold)" }} className="mt-1 shrink-0 text-sm">
-                                  ✦
+                                <span style={{ color: "var(--gold)", marginTop: "3px" }} className="shrink-0">
+                                  <IconCheck size={14} />
                                 </span>
-                                <span className="text-sm font-light" style={{ color: "var(--cream2)" }}>
-                                  {f}
-                                </span>
+                                <span className="text-sm font-light" style={{ color: "var(--cream2)" }}>{f}</span>
                               </li>
                             ))}
                           </ul>
@@ -124,10 +118,7 @@ export default function Services() {
 
                         {/* Right: benefits */}
                         <div>
-                          <p
-                            className="text-xs font-medium tracking-widest uppercase mb-4"
-                            style={{ color: "var(--gold)" }}
-                          >
+                          <p className="text-xs font-medium tracking-widest uppercase mb-4" style={{ color: "var(--gold)" }}>
                             Beneficios clave
                           </p>
                           <div className="space-y-3 mb-8">
@@ -137,10 +128,13 @@ export default function Services() {
                                 className="flex items-start gap-3 p-3 rounded-sm"
                                 style={{ background: "rgba(247,243,238,0.04)" }}
                               >
-                                <span className="text-xl shrink-0">{b.icon}</span>
-                                <span className="text-sm font-light" style={{ color: "var(--cream2)" }}>
-                                  {b.text}
+                                <span
+                                  className="shrink-0 mt-0.5"
+                                  style={{ color: "var(--gold)" }}
+                                >
+                                  <IconBenefit />
                                 </span>
+                                <span className="text-sm font-light" style={{ color: "var(--cream2)" }}>{b}</span>
                               </div>
                             ))}
                           </div>
@@ -153,7 +147,8 @@ export default function Services() {
                               className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium tracking-wider uppercase rounded-sm transition-all duration-300 hover:scale-105"
                               style={{ background: "var(--gold)", color: "var(--ink)" }}
                             >
-                              💬 Cotizar este servicio
+                              <IconWhatsApp size={16} />
+                              Cotizar este servicio
                             </a>
                           )}
                         </div>
@@ -162,14 +157,8 @@ export default function Services() {
                       {/* ── Packages (svc6 only) ── */}
                       {svc.packages && (
                         <div className="mt-10">
-                          <div
-                            className="w-full h-px mb-8"
-                            style={{ background: "rgba(168,137,90,0.2)" }}
-                          />
-                          <p
-                            className="text-xs font-medium tracking-widest uppercase mb-6"
-                            style={{ color: "var(--gold)" }}
-                          >
+                          <div className="w-full h-px mb-8" style={{ background: "rgba(168,137,90,0.2)" }} />
+                          <p className="text-xs font-medium tracking-widest uppercase mb-6" style={{ color: "var(--gold)" }}>
                             Paquetes disponibles
                           </p>
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -187,18 +176,12 @@ export default function Services() {
                                 {pkg.badge && (
                                   <span
                                     className="absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-medium px-3 py-1 rounded-full whitespace-nowrap"
-                                    style={{
-                                      background: "var(--gold)",
-                                      color: "var(--ink)",
-                                    }}
+                                    style={{ background: "var(--gold)", color: "var(--ink)" }}
                                   >
                                     {pkg.badge}
                                   </span>
                                 )}
-                                <h4
-                                  className="font-cormorant font-semibold text-xl mb-2"
-                                  style={{ color: "var(--gold-lt)" }}
-                                >
+                                <h4 className="font-cormorant font-semibold text-xl mb-2" style={{ color: "var(--gold-lt)" }}>
                                   {pkg.name}
                                 </h4>
                                 <p className="text-xs font-light mb-4" style={{ color: "var(--stone)" }}>
@@ -207,7 +190,9 @@ export default function Services() {
                                 <ul className="space-y-2 flex-1 mb-6">
                                   {pkg.includes.map((item, j) => (
                                     <li key={j} className="flex items-start gap-2 text-sm font-light" style={{ color: "var(--cream2)" }}>
-                                      <span style={{ color: "var(--gold)" }} className="shrink-0 mt-0.5 text-xs">✦</span>
+                                      <span style={{ color: "var(--gold)", marginTop: "3px" }} className="shrink-0">
+                                        <IconCheck size={13} />
+                                      </span>
                                       {item}
                                     </li>
                                   ))}
@@ -223,7 +208,8 @@ export default function Services() {
                                     border: pkg.badge ? "none" : "1px solid rgba(168,137,90,0.3)",
                                   }}
                                 >
-                                  💬 Cotizar
+                                  <IconWhatsApp size={14} />
+                                  Cotizar
                                 </a>
                               </div>
                             ))}
